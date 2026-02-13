@@ -20,6 +20,9 @@
 # production
 /build
 
+# docs (documentación local, no subir en merge)
+/docs
+
 # misc
 .DS_Store
 *.pem

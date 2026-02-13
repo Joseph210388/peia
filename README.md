@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PEIA
 
-## Getting Started
+Sitio web del proyecto **PEIA** (Pedagogía extraescolar infantil artística), construido con [Next.js](https://nextjs.org).
 
-First, run the development server:
+## Sobre el proyecto
+
+**PEIA** es un servicio dirigido a colegios para apoyar a niños y niñas de **2 a 6 años** con relaciones y necesidades especiales específicas, mediante el respeto mutuo y la pedagogía artística.
+
+- **Eslogan:** *"PEIA ayuda y mejora tu vida y crianza"* — compromiso con la inclusión y el bienestar infantil, y un modelo de crianza más sensible, respetuoso y enriquecedor.
+- **Audiencia:** Colegios (clientes) y familias; beneficiarios: niños y niñas en edad infantil.
+- **Secciones del sitio (previstas):** Inicio · Nuestra Misión · Talleres de Trabajo · Blog · Contacto.
+
+El proyecto es solo web (sin app nativa) y por ahora no utiliza backend propio. Idioma principal: **español**.
+
+---
+
+## Comenzar en local
+
+Clona el repositorio, instala dependencias y arranca el servidor de desarrollo:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en el navegador. Puedes editar la página en `app/page.tsx`; los cambios se reflejan al guardar.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Otros comandos:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run build` — genera la build de producción.
+- `npm start` — sirve la aplicación ya compilada (tras `npm run build`).
 
-## Learn More
+Este proyecto usa [Next.js](https://nextjs.org) con [Tailwind CSS](https://tailwindcss.com) v4 y fuentes [Geist](https://vercel.com/font) (optimizadas con `next/font`).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Desplegar
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+La forma más sencilla de desplegar esta app Next.js es usar [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme):
 
-## Deploy on Vercel
+1. Sube el repositorio a GitHub (o similar).
+2. En [vercel.com](https://vercel.com), importa el proyecto y conecta el repo.
+3. Vercel detectará Next.js y configurará build y despliegue automáticamente.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Consulta la [documentación de despliegue de Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para otras opciones (self-host, Docker, etc.).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Más sobre Next.js
+
+- [Documentación de Next.js](https://nextjs.org/docs)
+- [Tutorial Learn Next.js](https://nextjs.org/learn)
+- [Repositorio de Next.js en GitHub](https://github.com/vercel/next.js)
