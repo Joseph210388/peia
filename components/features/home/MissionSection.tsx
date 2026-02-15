@@ -1,0 +1,99 @@
+import Link from "next/link";
+
+export default function MissionSection() {
+  return (
+    <section
+      className="bg-zinc-50 px-4 py-16 font-sans sm:px-6 lg:px-8"
+      aria-labelledby="mission-heading"
+    >
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* Columna izquierda: ilustración + recuadro Respeto y Libertad (solo desktop) */}
+        <div className="relative hidden lg:block">
+          <div className="overflow-hidden rounded-2xl bg-peia-yellow-light shadow-lg">
+            <div className="aspect-[4/3.5] flex items-center justify-center p-8">
+              <div className="relative flex h-full max-h-80 w-full items-center justify-center">
+                <span className="text-8xl" aria-hidden>
+                  🎨
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="absolute bottom-4 right-4 z-10 w-48 max-w-[45%] rounded-xl bg-peia-dark px-4 py-3 text-white shadow-lg sm:bottom-6 sm:right-6 sm:w-56">
+            <p className="font-semibold">Respeto y Libertad</p>
+            <p className="mt-1 text-sm text-white/90">
+              Fomentamos la autonomía a través de la expresión artística guiada.
+            </p>
+          </div>
+        </div>
+
+        {/* Columna derecha: título, párrafo, tarjetas, botón */}
+        <div>
+          <h2
+            id="mission-heading"
+            className="text-3xl font-bold text-peia-dark sm:text-4xl"
+          >
+            Nuestra Misión
+          </h2>
+          <p className="mt-4 leading-relaxed text-zinc-600 sm:mt-6">
+            En PEIA creemos que el arte es el lenguaje natural de la infancia.
+            Nuestro enfoque único combina la pedagogía extraescolar con un
+            compromiso profundo hacia la inclusión y el respeto mutuo.
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
+            <div className="rounded-xl border border-zinc-200 border-l-4 border-l-zinc-400 bg-white p-4 shadow-sm">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-zinc-900">Intergeneracional</h3>
+              <p className="mt-1 text-sm text-zinc-600">
+                Unión entre generaciones para un aprendizaje rico y humano.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-zinc-200 border-l-4 border-l-peia-yellow bg-peia-yellow-light p-4 shadow-sm">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-peia-yellow/30 text-peia-dark">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                  />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-zinc-900">Artística</h3>
+              <p className="mt-1 text-sm text-zinc-600">
+                Exploración de materiales y técnicas adaptadas a cada edad.
+              </p>
+            </div>
+          </div>
+
+          <Link
+            href="/mission"
+            className="mt-8 flex w-full items-center justify-center rounded-lg bg-peia-dark px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90 sm:mt-10 sm:inline-flex sm:w-auto"
+          >
+            Sobre Nosotros
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

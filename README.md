@@ -14,6 +14,14 @@ El proyecto es solo web (sin app nativa) y por ahora no utiliza backend propio. 
 
 ---
 
+## Proceso de Desarrollo
+
+- **(13/02/2025):** Documentación inicial del proyecto, estructura de carpetas y rutas (mission, workshops, blog, contact), componentes base (Header, utils, types), configuración inicial.
+- **(14/02/2025):** Maquetado completo de la página de inicio (Header, Hero, Misión, Talleres Creativos, Historias de PEIA, Contacto, Footer). Paleta unificada (amarillo, peia-dark, blanco), tema claro fijo. Footer en layout raíz, botón WhatsApp global.
+- **(15/02/2025):** Header responsive con menú hamburguesa. FAQ acordeón sustituye Historias de PEIA. Misión rediseñada (ilustración + cards responsive). Página Talleres con hero y 4 talleres colaborativos. Página Contacto con hero, FAQ y formulario completo. Email y teléfono unificados.
+
+---
+
 ## Comenzar en local
 
 Clona el repositorio, instala dependencias y arranca el servidor de desarrollo:
