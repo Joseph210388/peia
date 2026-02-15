@@ -40,15 +40,15 @@ export default function ContactFAQSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <span className="inline-block rounded-full bg-peia-yellow px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-900">
-              Preguntas frecuentes
-            </span>
-            <h2
-              id="contact-faq-heading"
-              className="mt-4 text-3xl font-bold text-peia-dark sm:text-4xl"
-            >
-              Resuelve tus dudas rápidamente
-            </h2>
+            <div className="mt-4 w-fit">
+              <h2
+                id="contact-faq-heading"
+                className="text-3xl font-bold text-peia-dark sm:text-4xl"
+              >
+                Preguntas frecuentes
+              </h2>
+              <span className="line-dashed-tight mt-1 block w-full" />
+            </div>
             <p className="mt-4 text-zinc-600">
               Hemos recopilado las preguntas más comunes de los padres para
               ayudarte a entender mejor cómo funciona PEIA y los beneficios

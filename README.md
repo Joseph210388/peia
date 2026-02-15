@@ -40,22 +40,3 @@ Otros comandos:
 
 Este proyecto usa [Next.js](https://nextjs.org) con [Tailwind CSS](https://tailwindcss.com) v4 y fuentes [Geist](https://vercel.com/font) (optimizadas con `next/font`).
 
----
-
-## Desplegar
-
-La forma más sencilla de desplegar esta app Next.js es usar [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme):
-
-1. Sube el repositorio a GitHub (o similar).
-2. En [vercel.com](https://vercel.com), importa el proyecto y conecta el repo.
-3. Vercel detectará Next.js y configurará build y despliegue automáticamente.
-
-Consulta la [documentación de despliegue de Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para otras opciones (self-host, Docker, etc.).
-
----
-
-## Más sobre Next.js
-
-- [Documentación de Next.js](https://nextjs.org/docs)
-- [Tutorial Learn Next.js](https://nextjs.org/learn)
-- [Repositorio de Next.js en GitHub](https://github.com/vercel/next.js)

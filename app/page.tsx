@@ -1,5 +1,5 @@
-import ContactSection from "@/components/features/home/ContactSection";
-import FAQSection from "@/components/features/home/FAQSection";
+import ContactFormSection from "@/components/features/contact/ContactFormSection";
+import ContactFAQSection from "@/components/features/contact/ContactFAQSection";
 import HeroSection from "@/components/features/home/HeroSection";
 import MissionSection from "@/components/features/home/MissionSection";
 import WorkshopsSection from "@/components/features/home/WorkshopsSection";
@@ -16,8 +16,8 @@ export default function Home() {
       <HeroSection />
       <MissionSection />
       <WorkshopsSection />
-      <FAQSection />
-      <ContactSection />
+      <ContactFAQSection />
+      <ContactFormSection />
     </>
   );
 }

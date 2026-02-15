@@ -31,13 +31,15 @@ export default function WorkshopsSection() {
       aria-labelledby="workshops-heading"
     >
       <div className="mx-auto max-w-6xl">
-        <h2
-          id="workshops-heading"
-          className="text-center text-3xl font-bold text-zinc-900 sm:text-4xl"
-        >
-          Talleres Creativos
-        </h2>
-        <span className="mx-auto mt-2 block h-1 w-24 rounded-full bg-peia-yellow" />
+        <div className="w-fit mx-auto">
+          <h2
+            id="workshops-heading"
+            className="text-center text-3xl font-bold text-zinc-900 sm:text-4xl"
+          >
+            Talleres Creativos
+          </h2>
+          <span className="line-dashed-tight mt-2 block w-full" />
+        </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
           {workshops.map((workshop) => (

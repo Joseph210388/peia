@@ -36,7 +36,6 @@ export default function ContactFormSection() {
               <form
                 onSubmit={handleSubmit}
                 className="mt-6 flex flex-col gap-4"
-                noValidate
               >
                 <label className="block">
                   <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-600">

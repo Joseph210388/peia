@@ -28,12 +28,15 @@ export default function MissionSection() {
 
         {/* Columna derecha: título, párrafo, tarjetas, botón */}
         <div>
-          <h2
-            id="mission-heading"
-            className="text-3xl font-bold text-peia-dark sm:text-4xl"
-          >
-            Nuestra Misión
-          </h2>
+          <div className="w-fit">
+            <h2
+              id="mission-heading"
+              className="text-3xl font-bold text-peia-dark sm:text-4xl"
+            >
+              Nuestra Misión
+            </h2>
+            <span className="line-dashed-tight mt-1 block w-full" />
+          </div>
           <p className="mt-4 leading-relaxed text-zinc-600 sm:mt-6">
             En PEIA creemos que el arte es el lenguaje natural de la infancia.
             Nuestro enfoque único combina la pedagogía extraescolar con un

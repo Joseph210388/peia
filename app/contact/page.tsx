@@ -1,6 +1,6 @@
+import PageHero from "@/components/ui/PageHero";
 import ContactFAQSection from "@/components/features/contact/ContactFAQSection";
 import ContactFormSection from "@/components/features/contact/ContactFormSection";
-import ContactHeroSection from "@/components/features/contact/ContactHeroSection";
 
 export const metadata = {
   title: "Contacto | PEIA",
@@ -12,7 +12,10 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white font-sans">
       <main>
-        <ContactHeroSection />
+        <PageHero
+          src="/contact-hero.svg"
+          alt="Contacto PEIA - estaremos encantados de ayudarte"
+        />
         <ContactFAQSection />
         <ContactFormSection />
       </main>
