@@ -7,7 +7,7 @@ export default function HeroSection() {
       aria-label="Presentación de PEIA"
     >
       <div className="relative mx-auto max-w-4xl text-center">
-        <span className="inline-block rounded-full bg-peia-yellow px-4 py-1.5 text-sm font-semibold uppercase tracking-wide text-zinc-900">
+        <span className="inline-block rounded-full bg-peia-rainbow-violet px-4 py-1.5 text-sm font-semibold uppercase tracking-wide text-white">
           Educación creativa
         </span>
         <h1 className="mt-6 text-4xl font-bold leading-tight text-peia-dark drop-shadow-sm sm:text-5xl lg:text-6xl">
@@ -20,13 +20,13 @@ export default function HeroSection() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/mission"
-            className="rounded-lg bg-peia-yellow px-6 py-3 text-sm font-semibold text-zinc-900 transition-opacity hover:opacity-90"
+            className="rounded-lg bg-peia-rainbow-violet px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
             Conócenos más
           </Link>
           <Link
             href="/workshops"
-            className="rounded-lg border-2 border-peia-dark bg-transparent px-6 py-3 text-sm font-semibold text-peia-dark transition-opacity hover:bg-zinc-100"
+            className="rounded-lg border-2 border-peia-rainbow-indigo bg-transparent px-6 py-3 text-sm font-semibold text-peia-rainbow-indigo transition-opacity hover:bg-peia-rainbow-indigo/10"
           >
             Ver talleres
           </Link>

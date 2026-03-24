@@ -1,5 +1,6 @@
-"use client";
+ "use client";
 
+import { motion } from "motion/react";
 import { useState } from "react";
 
 const contactOptions = [
@@ -22,10 +23,22 @@ export default function ContactFormSection() {
       className="bg-peia-dark px-4 py-16 font-sans sm:px-6 lg:px-8"
       aria-labelledby="contact-form-heading"
     >
-      <div className="mx-auto max-w-6xl">
+      <motion.div
+        className="mx-auto max-w-6xl"
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Formulario */}
-          <div className="lg:order-1">
+          <motion.div
+            className="lg:order-1"
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             <div className="rounded-2xl bg-white p-6 shadow-xl sm:p-8">
               <h2
                 id="contact-form-heading"
@@ -112,9 +125,10 @@ export default function ContactFormSection() {
                     className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:border-peia-dark focus:outline-none focus:ring-1 focus:ring-peia-dark"
                   />
                 </label>
-                <button
+                <motion.button
                   type="submit"
-                  className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-peia-yellow px-6 py-3 font-semibold text-zinc-900 transition-opacity hover:opacity-90"
+                  whileTap={{ scale: 0.97 }}
+                  className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-peia-rainbow-violet px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
                 >
                   {sent ? "Enviado" : "Enviar solicitud"}
                   {!sent && (
@@ -122,13 +136,19 @@ export default function ContactFormSection() {
                       →
                     </span>
                   )}
-                </button>
+                </motion.button>
               </form>
             </div>
-          </div>
+          </motion.div>
 
           {/* Datos de contacto */}
-          <div className="flex flex-col justify-center lg:order-2">
+          <motion.div
+            className="flex flex-col justify-center lg:order-2"
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+          >
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
               Estamos a un solo clic de distancia
             </h2>
@@ -138,9 +158,15 @@ export default function ContactFormSection() {
               resolver cualquier duda.
             </p>
             <div className="mt-8 space-y-6">
-              <div className="flex items-start gap-4">
+              <motion.div
+                className="flex items-start gap-4"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+              >
                 <span
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-peia-yellow text-xl text-zinc-900"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-peia-rainbow-green text-xl text-white"
                   aria-hidden
                 >
                   📞
@@ -156,10 +182,16 @@ export default function ContactFormSection() {
                     +34 623 02 65 55
                   </a>
                 </div>
-              </div>
-              <div className="flex items-start gap-4">
+              </motion.div>
+              <motion.div
+                className="flex items-start gap-4"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
+              >
                 <span
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-peia-yellow text-xl text-zinc-900"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-peia-rainbow-blue text-xl text-white"
                   aria-hidden
                 >
                   ✉️
@@ -175,11 +207,11 @@ export default function ContactFormSection() {
                     peiaviculoafectivo@gmail.com
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

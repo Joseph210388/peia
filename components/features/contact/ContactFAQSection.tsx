@@ -1,5 +1,6 @@
-"use client";
+ "use client";
 
+import { motion } from "motion/react";
 import { useState } from "react";
 
 const faqs = [
@@ -37,9 +38,20 @@ export default function ContactFAQSection() {
       className="bg-zinc-50 px-4 py-16 font-sans sm:px-6 lg:px-8"
       aria-labelledby="contact-faq-heading"
     >
-      <div className="mx-auto max-w-6xl">
+      <motion.div
+        className="mx-auto max-w-6xl"
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             <div className="mt-4 w-fit">
               <h2
                 id="contact-faq-heading"
@@ -47,25 +59,47 @@ export default function ContactFAQSection() {
               >
                 Preguntas frecuentes
               </h2>
-              <span className="line-dashed-tight mt-1 block w-full" />
+              <span className="line-rainbow mt-1 block w-full" />
             </div>
             <p className="mt-4 text-zinc-600">
               Hemos recopilado las preguntas más comunes de los padres para
               ayudarte a entender mejor cómo funciona PEIA y los beneficios
               para tus hijos de 2 a 6 años.
             </p>
-            <div className="mt-8 flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-zinc-200/50 text-6xl">
+            <motion.div
+              className="mt-8 flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-zinc-200/50 text-6xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            >
               🎨
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="flex flex-col gap-3">
+          <motion.div
+            className="flex flex-col gap-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.1 },
+              },
+            }}
+          >
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
-                <div
+                <motion.div
                   key={index}
                   className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
                   <button
                     type="button"
@@ -76,9 +110,14 @@ export default function ContactFAQSection() {
                     id={`contact-faq-question-${index}`}
                   >
                     <span>{faq.question}</span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center text-zinc-600" aria-hidden>
+                    <span
+                      className="flex h-8 w-8 shrink-0 items-center justify-center text-zinc-600"
+                      aria-hidden
+                    >
                       <svg
-                        className={`h-5 w-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                        className={`h-5 w-5 transition-transform duration-200 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -106,12 +145,12 @@ export default function ContactFAQSection() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,9 +1,10 @@
 import PageHero from "@/components/ui/PageHero";
+import MissionAboutSections from "@/components/features/mission/MissionAboutSections";
 
 export const metadata = {
-  title: "Nuestra Misión | PEIA",
+  title: "Sobre Nosotros | PEIA",
   description:
-    "Conoce la misión de PEIA: pedagogía extraescolar infantil artística para el bienestar y la inclusión.",
+    "Conoce la misión, visión, valores e historia de PEIA: pedagogía extraescolar infantil artística para el bienestar y la inclusión.",
 };
 
 export default function MissionPage() {
@@ -14,15 +15,7 @@ export default function MissionPage() {
           src="/mission-hero.svg"
           alt="Sobre nosotros - PEIA pedagogía artística"
         />
-        <div className="mx-auto max-w-3xl px-6 py-16">
-        <h1 className="text-3xl font-semibold tracking-tight text-peia-dark">
-          Nuestra Misión
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-600">
-          Contenido en preparación. Aquí se explicará la misión de PEIA y su
-          compromiso con la inclusión y el bienestar infantil.
-        </p>
-        </div>
+        <MissionAboutSections />
       </main>
     </div>
   );

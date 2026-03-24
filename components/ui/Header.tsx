@@ -1,6 +1,8 @@
-"use client";
+ "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 const navItems = [
@@ -12,6 +14,7 @@ const navItems = [
 ] as const;
 
 export default function Header() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
@@ -28,18 +31,43 @@ export default function Header() {
 
         {/* Nav desktop: visible en md+ */}
         <nav
-          className="hidden items-center gap-8 md:flex"
+          className="relative hidden items-center gap-8 md:flex"
           aria-label="Navegación principal"
         >
-          {navItems.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-sm font-medium uppercase tracking-wide text-zinc-700 transition-colors hover:text-peia-dark"
-            >
-              {label}
-            </Link>
-          ))}
+          {navItems.map(({ href, label }, index) => {
+            const isActive = pathname === href;
+            const rainbowUnderline = [
+              "bg-peia-rainbow-red",
+              "bg-peia-rainbow-orange",
+              "bg-peia-rainbow-yellow",
+              "bg-peia-rainbow-green",
+              "bg-peia-rainbow-blue",
+            ][index];
+
+            return (
+              <div key={href} className="relative px-1">
+                <Link
+                  href={href}
+                  className={`inline-flex items-center text-sm font-medium uppercase tracking-wide transition-colors transition-transform duration-200 hover:-translate-y-0.5 ${
+                    isActive ? "text-peia-dark" : "text-zinc-700 hover:text-peia-dark"
+                  }`}
+                >
+                  {label}
+                </Link>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${rainbowUnderline}`}
+                    transition={{
+                      type: "spring",
+                      stiffness: 450,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         {/* Botón hamburguesa: solo móvil */}
@@ -80,17 +108,31 @@ export default function Header() {
         <div className="overflow-hidden">
           <div className="border-t border-zinc-200 bg-white px-4 py-4">
             <ul className="flex flex-col gap-1">
-              {navItems.map(({ href, label }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    onClick={closeMobileMenu}
-                    className="block rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-wide text-zinc-700 transition-colors hover:bg-zinc-50 hover:text-peia-dark"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
+              {navItems.map(({ href, label }, index) => {
+                const isActive = pathname === href;
+                const rainbowBg = [
+                  "bg-peia-rainbow-red/20 text-peia-rainbow-red",
+                  "bg-peia-rainbow-orange/20 text-peia-rainbow-orange",
+                  "bg-peia-rainbow-yellow/20 text-peia-rainbow-yellow",
+                  "bg-peia-rainbow-green/20 text-peia-rainbow-green",
+                  "bg-peia-rainbow-blue/20 text-peia-rainbow-blue",
+                ][index];
+                return (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      onClick={closeMobileMenu}
+                      className={`block rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-wide transition-colors transition-transform duration-200 hover:translate-x-1 ${
+                        isActive
+                          ? rainbowBg
+                          : "text-zinc-700 hover:bg-zinc-50 hover:text-peia-dark"
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

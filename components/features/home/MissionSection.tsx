@@ -1,4 +1,7 @@
+ "use client";
+
 import Link from "next/link";
+import { motion } from "motion/react";
 
 export default function MissionSection() {
   return (
@@ -8,26 +11,58 @@ export default function MissionSection() {
     >
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Columna izquierda: ilustración + recuadro Respeto y Libertad (solo desktop) */}
-        <div className="relative hidden lg:block">
-          <div className="overflow-hidden rounded-2xl bg-peia-yellow-light shadow-lg">
+        <motion.div
+          className="relative hidden lg:block"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <motion.div
+            className="overflow-hidden rounded-2xl bg-peia-yellow-light shadow-lg"
+            initial={{ scale: 0.96, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+          >
             <div className="aspect-[4/3.5] flex items-center justify-center p-8">
               <div className="relative flex h-full max-h-80 w-full items-center justify-center">
-                <span className="text-8xl" aria-hidden>
+                <motion.span
+                  className="text-8xl"
+                  aria-hidden
+                  animate={{ rotate: [0, -4, 4, 0], scale: [1, 1.05, 1] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
                   🎨
-                </span>
+                </motion.span>
               </div>
             </div>
-          </div>
-          <div className="absolute bottom-4 right-4 z-10 w-48 max-w-[45%] rounded-xl bg-peia-dark px-4 py-3 text-white shadow-lg sm:bottom-6 sm:right-6 sm:w-56">
+          </motion.div>
+          <motion.div
+            className="absolute bottom-4 right-4 z-10 w-48 max-w-[45%] rounded-xl bg-peia-dark px-4 py-3 text-white shadow-lg sm:bottom-6 sm:right-6 sm:w-56"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
+          >
             <p className="font-semibold">Respeto y Libertad</p>
             <p className="mt-1 text-sm text-white/90">
               Fomentamos la autonomía a través de la expresión artística guiada.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Columna derecha: título, párrafo, tarjetas, botón */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <div className="w-fit">
             <h2
               id="mission-heading"
@@ -35,7 +70,7 @@ export default function MissionSection() {
             >
               Nuestra Misión
             </h2>
-            <span className="line-dashed-tight mt-1 block w-full" />
+            <span className="line-rainbow mt-1 block w-full" />
           </div>
           <p className="mt-4 leading-relaxed text-zinc-600 sm:mt-6">
             En PEIA creemos que el arte es el lenguaje natural de la infancia.
@@ -43,9 +78,30 @@ export default function MissionSection() {
             compromiso profundo hacia la inclusión y el respeto mutuo.
           </p>
 
-          <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
-            <div className="rounded-xl border border-zinc-200 border-l-4 border-l-zinc-400 bg-white p-4 shadow-sm">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600">
+          <motion.div
+            className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.12,
+                },
+              },
+            }}
+          >
+            <motion.div
+              className="rounded-xl border border-zinc-200 border-l-4 border-l-peia-rainbow-blue bg-white p-4 shadow-sm"
+              variants={{
+                hidden: { opacity: 0, y: 24 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              whileHover={{ y: -4, boxShadow: "0 18px 40px rgba(0,0,0,0.08)" }}
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-peia-rainbow-blue/20 text-peia-rainbow-blue">
                 <svg
                   className="h-6 w-6"
                   fill="none"
@@ -64,10 +120,18 @@ export default function MissionSection() {
               <p className="mt-1 text-sm text-zinc-600">
                 Unión entre generaciones para un aprendizaje rico y humano.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="rounded-xl border border-zinc-200 border-l-4 border-l-peia-yellow bg-peia-yellow-light p-4 shadow-sm">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-peia-yellow/30 text-peia-dark">
+            <motion.div
+              className="rounded-xl border border-zinc-200 border-l-4 border-l-peia-rainbow-orange bg-peia-rainbow-orange/10 p-4 shadow-sm"
+              variants={{
+                hidden: { opacity: 0, y: 24 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
+              whileHover={{ y: -4, boxShadow: "0 18px 40px rgba(0,0,0,0.08)" }}
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-peia-rainbow-orange/30 text-peia-rainbow-orange">
                 <svg
                   className="h-6 w-6"
                   fill="none"
@@ -86,16 +150,23 @@ export default function MissionSection() {
               <p className="mt-1 text-sm text-zinc-600">
                 Exploración de materiales y técnicas adaptadas a cada edad.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <Link
-            href="/mission"
-            className="mt-8 flex w-full items-center justify-center rounded-lg bg-peia-dark px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90 sm:mt-10 sm:inline-flex sm:w-auto"
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           >
-            Sobre Nosotros
-          </Link>
-        </div>
+            <Link
+              href="/mission"
+              className="mt-8 flex w-full items-center justify-center rounded-lg bg-gradient-rainbow px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90 sm:mt-10 sm:inline-flex sm:w-auto"
+            >
+              Sobre Nosotros
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

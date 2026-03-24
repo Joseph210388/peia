@@ -1,8 +1,6 @@
-/**
- * Utilidades compartidas del proyecto PEIA.
- */
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-// Ejemplo: exportar helpers cuando se necesiten
-// export function cn(...classes: (string | undefined)[]) {
-//   return classes.filter(Boolean).join(" ");
-// }
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
