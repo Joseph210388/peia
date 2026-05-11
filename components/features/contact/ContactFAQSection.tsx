@@ -1,5 +1,6 @@
- "use client";
+"use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { useState } from "react";
 
@@ -26,6 +27,13 @@ const faqs = [
   },
 ];
 
+const accordionBorderColors = [
+  "border-l-peia-red",
+  "border-l-peia-teal",
+  "border-l-peia-purple",
+  "border-l-peia-pink",
+] as const;
+
 export default function ContactFAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -35,7 +43,7 @@ export default function ContactFAQSection() {
 
   return (
     <section
-      className="bg-zinc-50 px-4 py-16 font-sans sm:px-6 lg:px-8"
+      className="bg-gradient-warm px-4 py-16 font-sans sm:px-6 lg:px-8"
       aria-labelledby="contact-faq-heading"
     >
       <motion.div
@@ -55,25 +63,31 @@ export default function ContactFAQSection() {
             <div className="mt-4 w-fit">
               <h2
                 id="contact-faq-heading"
-                className="text-3xl font-bold text-peia-dark sm:text-4xl"
+                className="text-3xl font-black text-peia-dark sm:text-4xl"
               >
                 Preguntas frecuentes
               </h2>
-              <span className="line-rainbow mt-1 block w-full" />
+              <span className="line-title-underline mt-1 block w-full" />
             </div>
-            <p className="mt-4 text-zinc-600">
+            <p className="mt-4 text-lg text-stone-700">
               Hemos recopilado las preguntas más comunes de los padres para
               ayudarte a entender mejor cómo funciona PEIA y los beneficios
               para tus hijos de 2 a 6 años.
             </p>
             <motion.div
-              className="mt-8 flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-zinc-200/50 text-6xl"
+              className="relative mt-8 aspect-video w-full overflow-hidden rounded-3xl border-[3px] border-peia-purple bg-peia-purple/15 shadow-color-yellow"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
             >
-              🎨
+              <Image
+                src="/image/contact.png"
+                alt="Atención telefónica y consultas — PEIA"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </motion.div>
           </motion.div>
 
@@ -91,10 +105,11 @@ export default function ContactFAQSection() {
           >
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
+              const leftAccent = accordionBorderColors[index];
               return (
                 <motion.div
                   key={index}
-                  className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm"
+                  className={`overflow-hidden rounded-2xl border-2 border-peia-orange/30 border-l-4 bg-card ${leftAccent}`}
                   variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 },
@@ -104,14 +119,14 @@ export default function ContactFAQSection() {
                   <button
                     type="button"
                     onClick={() => toggle(index)}
-                    className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left font-medium text-zinc-900 transition-colors hover:bg-zinc-50"
+                    className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left font-bold text-peia-dark transition-colors duration-200 hover:bg-peia-yellow-light/50"
                     aria-expanded={isOpen}
                     aria-controls={`contact-faq-answer-${index}`}
                     id={`contact-faq-question-${index}`}
                   >
                     <span>{faq.question}</span>
                     <span
-                      className="flex h-8 w-8 shrink-0 items-center justify-center text-zinc-600"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-peia-teal/25 text-peia-dark"
                       aria-hidden
                     >
                       <svg
@@ -140,8 +155,8 @@ export default function ContactFAQSection() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="border-t border-zinc-200 px-4 py-4">
-                        <p className="text-zinc-600">{faq.answer}</p>
+                      <div className="border-t-2 border-peia-orange/20 bg-peia-cream/60 px-4 py-4">
+                        <p className="text-stone-700">{faq.answer}</p>
                       </div>
                     </div>
                   </div>

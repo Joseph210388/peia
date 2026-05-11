@@ -4,16 +4,16 @@ import MissionAboutSections from "@/components/features/mission/MissionAboutSect
 export const metadata = {
   title: "Sobre Nosotros | PEIA",
   description:
-    "Conoce la misión, visión, valores e historia de PEIA: pedagogía extraescolar infantil artística para el bienestar y la inclusión.",
+    "Misión, visión y valores de PEIA: servicio ambulante nacido en Estrella de los Deseos, complemento del centro y enfoque respetuoso (2–6 años).",
 };
 
 export default function MissionPage() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-peia-cream font-sans">
       <main>
         <PageHero
-          src="/mission-hero.svg"
-          alt="Sobre nosotros - PEIA pedagogía artística"
+          src="/image/mission-hero.png"
+          alt="Sobre nosotros — PEIA, pedagogía extraescolar artística e inclusión"
         />
         <MissionAboutSections />
       </main>

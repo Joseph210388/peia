@@ -8,7 +8,7 @@ interface PageHeroProps {
 export default function PageHero({ src, alt }: PageHeroProps) {
   return (
     <section className="relative w-full overflow-hidden">
-      <div className="relative w-full bg-zinc-200 aspect-3/1 sm:aspect-6/1">
+      <div className="relative w-full aspect-3/1 bg-linear-to-r from-peia-yellow-light via-peia-teal/30 to-peia-purple/25 sm:aspect-6/1">
         <Image
           src={src}
           alt={alt}

@@ -10,11 +10,11 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-peia-cream font-sans">
       <main>
         <PageHero
-          src="/contact-hero.svg"
-          alt="Contacto PEIA - estaremos encantados de ayudarte"
+          src="/image/contact-hero.png"
+          alt="Contacto PEIA — hablamos contigo sobre el servicio en tu centro"
         />
         <ContactFAQSection />
         <ContactFormSection />

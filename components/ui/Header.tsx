@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,6 +13,22 @@ const navItems = [
   { href: "/contact", label: "CONTACTO" },
 ] as const;
 
+const underlineColors = [
+  "bg-peia-red",
+  "bg-peia-orange",
+  "bg-peia-yellow",
+  "bg-peia-green",
+  "bg-peia-blue",
+] as const;
+
+const mobileActiveBg = [
+  "bg-peia-red/20 text-peia-red",
+  "bg-peia-orange/20 text-peia-orange",
+  "bg-peia-yellow/25 text-peia-dark",
+  "bg-peia-green/20 text-peia-green",
+  "bg-peia-blue/20 text-peia-blue",
+] as const;
+
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,13 +36,13 @@ export default function Header() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white font-sans shadow-sm">
+    <header className="sticky top-0 z-50 border-b-2 border-peia-orange/25 bg-peia-cream/95 font-sans backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2" aria-label="PEIA - Inicio">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-peia-yellow text-xl font-bold text-peia-dark">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-peia-yellow text-xl font-black text-peia-dark shadow-color-teal">
             P
           </span>
-          <span className="text-xl font-bold text-black">PEIA</span>
+          <span className="text-xl font-black text-peia-dark">PEIA</span>
         </Link>
 
         {/* Nav desktop: visible en md+ */}
@@ -36,20 +52,14 @@ export default function Header() {
         >
           {navItems.map(({ href, label }, index) => {
             const isActive = pathname === href;
-            const rainbowUnderline = [
-              "bg-peia-rainbow-red",
-              "bg-peia-rainbow-orange",
-              "bg-peia-rainbow-yellow",
-              "bg-peia-rainbow-green",
-              "bg-peia-rainbow-blue",
-            ][index];
+            const rainbowUnderline = underlineColors[index];
 
             return (
               <div key={href} className="relative px-1">
                 <Link
                   href={href}
-                  className={`inline-flex items-center text-sm font-medium uppercase tracking-wide transition-colors transition-transform duration-200 hover:-translate-y-0.5 ${
-                    isActive ? "text-peia-dark" : "text-zinc-700 hover:text-peia-dark"
+                  className={`inline-flex items-center text-sm font-bold uppercase tracking-wide transition-[color,transform] duration-200 ease-out hover:-translate-y-0.5 ${
+                    isActive ? "text-peia-dark" : "text-stone-700 hover:text-peia-dark"
                   }`}
                 >
                   {label}
@@ -57,7 +67,7 @@ export default function Header() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-underline"
-                    className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${rainbowUnderline}`}
+                    className={`absolute -bottom-1 left-0 right-0 h-1 rounded-full ${rainbowUnderline}`}
                     transition={{
                       type: "spring",
                       stiffness: 450,
@@ -73,7 +83,7 @@ export default function Header() {
         {/* Botón hamburguesa: solo móvil */}
         <button
           type="button"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-peia-dark md:hidden"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-2 border-peia-teal/40 text-peia-dark transition-colors hover:bg-peia-yellow-light/80 hover:border-peia-teal md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-nav"
@@ -106,26 +116,20 @@ export default function Header() {
         aria-hidden={!mobileMenuOpen}
       >
         <div className="overflow-hidden">
-          <div className="border-t border-zinc-200 bg-white px-4 py-4">
+          <div className="border-t-2 border-peia-orange/20 bg-peia-yellow-light/40 px-4 py-4">
             <ul className="flex flex-col gap-1">
               {navItems.map(({ href, label }, index) => {
                 const isActive = pathname === href;
-                const rainbowBg = [
-                  "bg-peia-rainbow-red/20 text-peia-rainbow-red",
-                  "bg-peia-rainbow-orange/20 text-peia-rainbow-orange",
-                  "bg-peia-rainbow-yellow/20 text-peia-rainbow-yellow",
-                  "bg-peia-rainbow-green/20 text-peia-rainbow-green",
-                  "bg-peia-rainbow-blue/20 text-peia-rainbow-blue",
-                ][index];
+                const rainbowBg = mobileActiveBg[index];
                 return (
                   <li key={href}>
                     <Link
                       href={href}
                       onClick={closeMobileMenu}
-                      className={`block rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-wide transition-colors transition-transform duration-200 hover:translate-x-1 ${
+                      className={`block rounded-2xl px-4 py-3 text-sm font-bold uppercase tracking-wide transition-[color,transform,background-color] duration-200 ease-out hover:translate-x-1 ${
                         isActive
                           ? rainbowBg
-                          : "text-zinc-700 hover:bg-zinc-50 hover:text-peia-dark"
+                          : "text-stone-700 hover:bg-peia-cream hover:text-peia-dark"
                       }`}
                     >
                       {label}

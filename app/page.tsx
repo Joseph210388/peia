@@ -7,7 +7,7 @@ import WorkshopsSection from "@/components/features/home/WorkshopsSection";
 export const metadata = {
   title: "Inicio",
   description:
-    "PEIA ayuda y mejora tu vida y crianza. Pedagogía extraescolar artística para niños de 2 a 6 años. Respeto, arte y comunidad.",
+    "PEIA ayuda y mejora tu vida y crianza. Extraescolar artística en el colegio (2–6 años): arte como herramienta social y emocional, grupos reducidos.",
 };
 
 export default function Home() {

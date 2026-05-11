@@ -1,130 +1,150 @@
- "use client";
+"use client";
 
-import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
+import WorkshopOfferCard from "@/components/features/workshops/WorkshopOfferCard";
+import { PEIA_WORKSHOP_CARDS } from "@/lib/peia-workshop-cards";
 
-const workshops = [
-  {
-    title: "Música y Movimiento",
-    age: "2-4 AÑOS",
-    description: "Explorando el ritmo del cuerpo y el alma.",
-    points: ["Instrumentos de madera", "Expresión corporal"],
-    image: "🍃",
-  },
-  {
-    title: "Artes Plásticas",
-    age: "3-6 AÑOS",
-    description: "Pinceles, barro y sueños de colores.",
-    points: ["Modelado en arcilla", "Pintura experimental"],
-    image: "🪵",
-  },
-  {
-    title: "Arte y Huerto",
-    age: "4-6 AÑOS",
-    description: "Conectando con la tierra y sus pigmentos.",
-    points: ["Tintes naturales", "Land art infantil"],
-    image: "🌿",
-  },
-];
+const GAP_PX = 16;
+
+function slidesVisibleForWidth(innerWidth: number) {
+  if (innerWidth >= 1024) return 3;
+  if (innerWidth >= 768) return 2;
+  return 1;
+}
+
+function basisPx(viewportWidth: number, innerWidth: number) {
+  const n = slidesVisibleForWidth(innerWidth);
+  const gaps = Math.max(0, n - 1) * GAP_PX;
+  return Math.max(200, Math.floor((viewportWidth - gaps) / n));
+}
 
 export default function WorkshopsSection() {
+  const viewportElRef = useRef<HTMLDivElement | null>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+    dragFree: false,
+  });
+
+  const setViewportRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      viewportElRef.current = node;
+      emblaRef(node);
+    },
+    [emblaRef]
+  );
+
+  const [slideBasisPx, setSlideBasisPx] = useState(280);
+
+  // Recalculamos el ancho de cada slide según el viewport del carrusel (Embla necesita tamaños estables).
+  useEffect(() => {
+    const el = viewportElRef.current;
+    if (!el) return;
+
+    const update = () => {
+      setSlideBasisPx(basisPx(el.clientWidth, window.innerWidth));
+    };
+
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    emblaApi?.reInit();
+  }, [emblaApi, slideBasisPx]);
+
+  const scrollPrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
   return (
     <section
-      className="bg-zinc-50 px-4 py-16 font-sans sm:px-6 lg:px-8"
+      id="talleres-inicio"
+      className="relative scroll-mt-24 overflow-hidden bg-peia-cream px-4 py-16 font-sans sm:px-6 lg:px-8"
       aria-labelledby="workshops-heading"
     >
+      <div
+        className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 bg-peia-yellow/40 blur-3xl blob-deco"
+        aria-hidden
+      />
       <motion.div
-        className="mx-auto max-w-6xl"
+        className="relative mx-auto max-w-6xl"
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="w-fit mx-auto">
+        <div className="mx-auto w-fit">
           <h2
             id="workshops-heading"
-            className="text-center text-3xl font-bold text-zinc-900 sm:text-4xl"
+            className="text-center text-3xl font-black text-peia-dark sm:text-4xl"
           >
-            Talleres Creativos
+            Talleres en el centro
           </h2>
-          <span className="line-rainbow mt-2 block w-full" />
+          <span className="line-title-underline mt-2 block w-full" />
         </div>
 
-        <motion.div
-          className="mt-12 grid gap-8 sm:grid-cols-3"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.14,
-              },
-            },
-          }}
+        <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-stone-700 sm:text-base">
+          Mismas tarjetas que en Talleres: desliza o usa las flechas; bucle infinito.
+        </p>
+
+        <div
+          className="relative mt-10 sm:mt-12"
+          role="region"
+          aria-roledescription="carrusel"
+          aria-label="Talleres y líneas de trabajo PEIA"
         >
-          {workshops.map((workshop, index) => {
-            const rainbowBadge = [
-              "bg-peia-rainbow-red text-white",
-              "bg-peia-rainbow-green text-white",
-              "bg-peia-rainbow-blue text-white",
-            ][index];
-            const rainbowBtn = [
-              "border-peia-rainbow-red text-peia-rainbow-red hover:bg-peia-rainbow-red hover:text-white",
-              "border-peia-rainbow-green text-peia-rainbow-green hover:bg-peia-rainbow-green hover:text-white",
-              "border-peia-rainbow-blue text-peia-rainbow-blue hover:bg-peia-rainbow-blue hover:text-white",
-            ][index];
-            return (
-            <motion.article
-              key={workshop.title}
-              className="flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm"
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-              whileHover={{
-                y: -6,
-                boxShadow: "0 20px 45px rgba(15,23,42,0.08)",
-              }}
+          <button
+            type="button"
+            onClick={scrollPrev}
+            className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border-2 border-peia-teal bg-peia-cream text-peia-dark shadow-color-teal transition hover:bg-peia-yellow-light sm:h-12 sm:w-12 lg:left-1"
+            aria-label="Anterior"
+          >
+            <ChevronLeft className="h-6 w-6" aria-hidden />
+          </button>
+          <button
+            type="button"
+            onClick={scrollNext}
+            className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border-2 border-peia-teal bg-peia-cream text-peia-dark shadow-color-teal transition hover:bg-peia-yellow-light sm:h-12 sm:w-12 lg:right-1"
+            aria-label="Siguiente"
+          >
+            <ChevronRight className="h-6 w-6" aria-hidden />
+          </button>
+
+          <div
+            className="overflow-hidden px-11 sm:px-14 lg:px-16"
+            ref={setViewportRef}
+          >
+            <div
+              className="flex touch-pan-y"
+              style={{ gap: GAP_PX }}
             >
-              <div className="flex h-48 items-center justify-center bg-zinc-100 text-6xl">
-                {workshop.image}
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="text-lg font-bold text-zinc-900">
-                  {workshop.title}
-                </h3>
-                <span className={`mt-2 inline-block w-fit rounded-full px-3 py-0.5 text-xs font-semibold ${rainbowBadge}`}>
-                  {workshop.age}
-                </span>
-                <p className="mt-3 text-sm text-zinc-600">
-                  {workshop.description}
-                </p>
-                <ul className="mt-3 list-inside list-disc text-sm text-zinc-600">
-                  {workshop.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+              {PEIA_WORKSHOP_CARDS.map((card, index) => (
+                <div
+                  key={card.slug}
+                  className="min-w-0 shrink-0 grow-0"
+                  style={{ flex: `0 0 ${slideBasisPx}px` }}
                 >
-                  <Link
-                    href="/workshops"
-                    className={`mt-4 block rounded-lg border-2 py-2 text-center text-sm font-semibold transition-colors ${rainbowBtn}`}
-                  >
-                    Saber más
-                  </Link>
-                </motion.div>
-              </div>
-            </motion.article>
-            );
-          })}
-        </motion.div>
+                  <WorkshopOfferCard card={card} accentIndex={index} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </motion.div>
     </section>
   );

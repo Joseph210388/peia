@@ -20,8 +20,9 @@
 # production
 /build
 
-# docs (documentación local, no subir en merge)
-/docs
+# Contexto local Cursor y bitácora (no subir al repositorio)
+/.cursor/
+/CHANGE.md
 
 # misc
 .DS_Store

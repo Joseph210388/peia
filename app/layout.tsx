@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Nunito } from "next/font/google";
 import Footer from "@/components/ui/Footer";
 import Header from "@/components/ui/Header";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
@@ -15,13 +15,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+/* Títulos con personalidad cercana (reglas PEIA / arte infantil) */
+const peiaDisplay = Nunito({
+  variable: "--font-peia-display",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "PEIA — Pedagogía extraescolar infantil artística",
     template: "%s | PEIA",
   },
   description:
-    "PEIA ayuda y mejora tu vida y crianza. Servicio de pedagogía artística para niños de 2 a 6 años. Inclusión y bienestar infantil.",
+    "PEIA ayuda y mejora tu vida y crianza. Pedagogía extraescolar artística ambulante para centros (2–6 años): proceso, inclusión y bienestar infantil.",
   metadataBase: new URL("https://peia.example.com"),
 };
 
@@ -33,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="light" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${peiaDisplay.variable} antialiased`}
       >
         <Header />
         {children}

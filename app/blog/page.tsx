@@ -3,16 +3,16 @@ import PageHero from "@/components/ui/PageHero";
 export const metadata = {
   title: "Blog | PEIA",
   description:
-    "Artículos y recursos sobre pedagogía artística, crianza respetuosa e inclusión infantil.",
+    "Pronto: ideas sobre extraescolar artística, aula y familia, inclusión y clima social en la infancia.",
 };
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-peia-cream font-sans">
       <main>
         <PageHero
-          src="/blog-hero.svg"
-          alt="Blog PEIA - artículos sobre pedagogía artística"
+          src="/image/blog-hero.png"
+          alt="Blog PEIA — recursos sobre pedagogía artística y crianza"
         />
         <div className="mx-auto flex min-h-[calc(100vh-20rem)] max-w-2xl flex-col items-center justify-center px-6 py-16 text-center">
         <div
@@ -89,12 +89,12 @@ export default function BlogPage() {
         <h1 className="text-2xl font-bold text-peia-dark sm:text-3xl">
           En construcción
         </h1>
-        <p className="mt-4 max-w-md text-lg leading-relaxed text-zinc-600">
-          Estamos trabajando en esta sección. Pronto encontrarás aquí artículos
-          y recursos sobre pedagogía artística, crianza respetuosa e inclusión
-          infantil.
+        <p className="mt-4 max-w-md text-lg leading-relaxed text-stone-700">
+          Estamos preparando textos breves sobre lo que vivimos en el taller,
+          cómo dialogar con el cole y recursos para familias —siempre desde el
+          arte, la escucha y la diversidad del grupo.
         </p>
-        <p className="mt-2 text-sm text-zinc-500">
+        <p className="mt-2 text-sm text-stone-600">
           ¡Vuelve pronto!
         </p>
         </div>
