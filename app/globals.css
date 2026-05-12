@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-/* PostCSS no resuelve el export "style" de shadcn/tailwind.css; apuntamos al fichero real */
-@import "../node_modules/shadcn/dist/tailwind.css";
+@import "../styles/shadcn-preset.css";
 
 @custom-variant dark (&:is(.dark *));
 
